@@ -15,8 +15,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/tinode/chat/server/store"
-	"github.com/tinode/chat/server/store/types"
+	"server/store"
+	"server/store/types"
 )
 
 // Request to hub to subscribe session to topic

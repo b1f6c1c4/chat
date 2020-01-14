@@ -12,9 +12,9 @@ import (
 	"log"
 	"strings"
 
-	"github.com/tinode/chat/server/auth"
-	"github.com/tinode/chat/server/store"
-	"github.com/tinode/chat/server/store/types"
+	"server/auth"
+	"server/store"
+	"server/store/types"
 )
 
 // topicInit reads an existing topic from database or creates a new topic

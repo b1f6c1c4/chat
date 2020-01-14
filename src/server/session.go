@@ -19,10 +19,10 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/tinode/chat/pbx"
-	"github.com/tinode/chat/server/auth"
-	"github.com/tinode/chat/server/store"
-	"github.com/tinode/chat/server/store/types"
+	"pbx"
+	"server/auth"
+	"server/store"
+	"server/store/types"
 )
 
 // Wire transport

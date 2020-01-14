@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/tinode/chat/server/push"
+	"server/push"
 )
 
 var handler stdoutPush

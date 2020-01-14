@@ -17,8 +17,8 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/tinode/chat/server/auth"
-	"github.com/tinode/chat/server/store/types"
+	"server/auth"
+	"server/store/types"
 
 	"golang.org/x/crypto/acme/autocert"
 )

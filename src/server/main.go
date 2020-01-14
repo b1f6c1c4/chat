@@ -28,31 +28,31 @@ import (
 	gh "github.com/gorilla/handlers"
 
 	// Authenticators
-	"github.com/tinode/chat/server/auth"
-	_ "github.com/tinode/chat/server/auth/anon"
-	_ "github.com/tinode/chat/server/auth/basic"
-	_ "github.com/tinode/chat/server/auth/rest"
-	_ "github.com/tinode/chat/server/auth/token"
+	"server/auth"
+	_ "server/auth/anon"
+	_ "server/auth/basic"
+	_ "server/auth/rest"
+	_ "server/auth/token"
 
 	// Database backends
-	_ "github.com/tinode/chat/server/db/mysql"
-	_ "github.com/tinode/chat/server/db/rethinkdb"
+	_ "server/db/mysql"
+	_ "server/db/rethinkdb"
 
 	// Push notifications
-	"github.com/tinode/chat/server/push"
-	_ "github.com/tinode/chat/server/push/fcm"
-	_ "github.com/tinode/chat/server/push/stdout"
+	"server/push"
+	_ "server/push/fcm"
+	_ "server/push/stdout"
 
-	"github.com/tinode/chat/server/store"
+	"server/store"
 
 	// Credential validators
-	_ "github.com/tinode/chat/server/validate/email"
-	_ "github.com/tinode/chat/server/validate/tel"
+	_ "server/validate/email"
+	_ "server/validate/tel"
 	"google.golang.org/grpc"
 
 	// File upload handlers
-	_ "github.com/tinode/chat/server/media/fs"
-	_ "github.com/tinode/chat/server/media/s3"
+	_ "server/media/fs"
+	_ "server/media/s3"
 )
 
 const (
