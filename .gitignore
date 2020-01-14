@@ -1,2 +1,7 @@
+*.swp
+*.swo
+*.swn
+*~
 /bin
 /pkg
+/VERSION
