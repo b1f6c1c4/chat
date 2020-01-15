@@ -1,11 +1,11 @@
+import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, compose } from 'redux';
 import { ConnectedRouter, routerMiddleware } from 'connected-react-router/immutable';
 import createSagaMiddleware from 'redux-saga';
 import persistState from 'redux-localstorage';
-import { createStructuredSelector, createSelector } from 'reselect';
 import { createBrowserHistory } from 'history';
 import { fromJS } from 'immutable';
 import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
@@ -15,15 +15,9 @@ import LoginContainer from './containers/LoginContainer';
 import createReducer from './reducers';
 import './main.css';
 
-
-const fonts = {
-  en: '"Roboto", "Helvetica", "Arial", sans-serif',
-  zh: '"Noto Sans SC X", "Noto Sans SC", "Microsoft YaHei", sans-serif',
-};
-
-const makeTheme = (fontFamily) => createMuiTheme({
+const theme = createMuiTheme({
   typography: {
-    fontFamily,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   },
   palette: {
     primary: {
@@ -40,13 +34,6 @@ const makeTheme = (fontFamily) => createMuiTheme({
     },
   },
 });
-
-const ConnectedMuiThemeProvider = connect(createStructuredSelector({
-  theme: createSelector(
-    (state) => state.getIn(['language', 'locale']),
-    (state) => makeTheme(fonts[state]),
-  ),
-}))(MuiThemeProvider);
 
 const history = createBrowserHistory();
 
@@ -86,11 +73,11 @@ const composeEnhancers = process.env.NODE_ENV !== 'production'
   : compose;
 /* eslint-enable no-underscore-dangle */
 
-const init = fromJS({});
+const init = {};
 
 const store = createStore(
   createReducer(history),
-  init,
+  fromJS(init),
   composeEnhancers(...enhancers),
 );
 
@@ -100,12 +87,12 @@ store.injectedSagas = {}; // Saga registry
 render((
   <Provider store={store}>
     <CssBaseline />
-    <ConnectedMuiThemeProvider>
+    <MuiThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
         <Switch>
           <Route path="/login" component={LoginContainer} />
         </Switch>
       </ConnectedRouter>
-    </ConnectedMuiThemeProvider>
+    </MuiThemeProvider>
   </Provider>
 ), document.getElementById('app'));

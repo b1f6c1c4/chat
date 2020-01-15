@@ -53,7 +53,7 @@ class RegisterForm extends React.PureComponent {
           <LoadingButton {...{ isLoading }}>
             <Button
               type="submit"
-              variant="raised"
+              variant="contained"
               color="primary"
               disabled={this.props.isLoading}
             >
@@ -68,7 +68,6 @@ class RegisterForm extends React.PureComponent {
 
 RegisterForm.propTypes = {
   ...propTypes,
-  classes: PropTypes.object.isRequired,
   onRegister: PropTypes.func.isRequired,
 };
 

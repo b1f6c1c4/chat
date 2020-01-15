@@ -15,6 +15,6 @@ export default function checkStore(store) {
   };
   invariant(
     _.conformsTo(store, shape),
-    '(app/utils...) injectors: Expected a valid redux store',
+    '(src/utils...) injectors: Expected a valid redux store',
   );
 }

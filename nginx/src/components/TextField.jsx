@@ -29,8 +29,8 @@ class TextField extends React.PureComponent {
 
 TextField.propTypes = {
   type: PropTypes.string,
-  label: PropTypes.object.isRequired,
-  helperText: PropTypes.object,
+  label: PropTypes.string.isRequired,
+  helperText: PropTypes.string,
 };
 
 export default TextField;

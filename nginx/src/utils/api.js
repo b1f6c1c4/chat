@@ -28,43 +28,7 @@ function patching(obj) {
   return obj;
 }
 
-async function refresh() {
-  await axios.get('/.netlify/functions/refresh');
-  credential = JSON.parse(retrieve('credential'));
-}
-
-function retryWithRefresh({ descriptor }) {
-  const { value } = descriptor;
-  // eslint-disable-next-line func-names
-  descriptor.value = async function (...args) {
-    let result;
-    try {
-      result = await value.apply(this, args);
-      return result;
-    } catch (e) {
-      if (!(e.code === 401 && e.message === 'Invalid Credentials')) {
-        throw e;
-      }
-    }
-    await refresh();
-    this.makeApi();
-    try {
-      result = await value.apply(this, args);
-      return result;
-    } catch (e) {
-      if (!(e.code === 401 && e.message === 'Invalid Credentials')) {
-        throw e;
-      }
-      window.location = '/';
-    }
-    return undefined;
-  };
-}
-
 export default class GoogleCalendar {
-  constructor() {
-  }
-
   makeApi() {
     /* eslint-disable camelcase */
     const { apiKey, token: { token_type, access_token } } = credential;
@@ -80,7 +44,6 @@ export default class GoogleCalendar {
     /* eslint-enable camelcase */
   }
 
-  @retryWithRefresh
   async getColors() {
     const { data: { error, event } } = await this.gcal.get('/colors', {
       params: {
@@ -91,7 +54,6 @@ export default class GoogleCalendar {
     return event;
   }
 
-  @retryWithRefresh
   async listEvents({ start, end }) {
     const { data: { error, items } } = await this.gcal.get('/calendars/primary/events', {
       params: {
@@ -113,7 +75,6 @@ export default class GoogleCalendar {
     return good;
   }
 
-  @retryWithRefresh
   async insertEvent({ start, end, summary, description, colorId, location }) {
     const { data } = await this.gcal.post('/calendars/primary/events', {
       params: {
@@ -132,7 +93,6 @@ export default class GoogleCalendar {
     return data;
   }
 
-  @retryWithRefresh
   async updateEvent({ id, start, end, summary, description, colorId, location }) {
     const { data } = await this.gcal.patch(`/calendars/primary/events/${id}`, {
       params: {
@@ -151,7 +111,6 @@ export default class GoogleCalendar {
     return data;
   }
 
-  @retryWithRefresh
   async deleteEvent({ id }) {
     await this.gcal.delete(`/calendars/primary/events/${id}`);
   }

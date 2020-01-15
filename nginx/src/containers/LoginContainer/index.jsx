@@ -40,12 +40,12 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  hasCredential: (state) => !!state.getIn(['globalContainer', 'credential']),
-  activeId: (state) => state.getIn(['loginContainer', 'activeId']),
-  isLoading: (state) => state.getIn(['loginContainer', 'isLoading']),
+  hasCredential: (state) => !!state.getIn(['global', 'credential']),
+  activeId: (state) => state.getIn(['login', 'activeId']),
+  isLoading: (state) => state.getIn(['login', 'isLoading']),
 });
 
 export default compose(
-  injectSaga({ key: 'loginContainer', saga: sagas }),
+  // injectSaga({ key: 'login', saga: sagas }),
   connect(mapStateToProps, mapDispatchToProps),
 )(LoginContainer);
