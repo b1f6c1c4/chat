@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 
 const Bundler = require('parcel-bundler');
-const netlifyLambda = require('netlify-lambda/lib/build');
 const shell = require('shelljs');
 
 process.env.NODE_ENV = 'production';
@@ -18,10 +17,4 @@ async function makeBundle() {
   shell.cp('art/*', 'dist/');
 }
 
-async function buildFunctions() {
-  const stats = await netlifyLambda.run('functions', undefined);
-  console.log(stats.toString({ color: true }));
-}
-
 makeBundle();
-buildFunctions();

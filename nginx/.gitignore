@@ -1,7 +1,6 @@
 # Artifact
 .cache
 dist
-functions-build
 node_modules
 
 # Cruft
