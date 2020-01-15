@@ -5,6 +5,7 @@ all: backend
 dc: dc-frontend dc-backend
 
 dc-frontend: frontend
+	(cd nginx && npm run build)
 	docker-compose build nginx
 
 frontend: # TODO

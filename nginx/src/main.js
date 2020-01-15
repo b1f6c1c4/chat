@@ -11,7 +11,7 @@ import { fromJS } from 'immutable';
 import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import { brown, teal } from '@material-ui/core/colors';
 import { Switch, Route } from 'react-router';
-import Root from './containers/Root';
+// import Root from './containers/Root';
 import createReducer from './reducers';
 import rootSaga from './sagas';
 import './main.css';
@@ -103,9 +103,9 @@ render((
     <ConnectedMuiThemeProvider>
       <ConnectedRouter history={history}>
         <Switch>
-          <Route path="/login" component={Root} />
+          {/* <Route path="/login" component={Root} />
           <Route path="/seminar" component={Root} />
-          <Route path="/proposal" component={Root} />
+          <Route path="/proposal" component={Root} /> */}
         </Switch>
       </ConnectedRouter>
     </ConnectedMuiThemeProvider>

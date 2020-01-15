@@ -2,7 +2,9 @@ version: "2.4"
 services:
 
   nginx:
-    build: ./nginx
+    build:
+      context: ./nginx/dist
+      dockerfile: ../Dockerfile
     image: chat-frontend
     restart: always
     ports:

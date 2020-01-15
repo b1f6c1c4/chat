@@ -1,5 +1,5 @@
 FROM nginx
 
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY . /var/www/
 
-COPY *.html *.js *.png *.xml *.ico *.webmanifest /var/www/
+RUN mv /var/www/default.conf /etc/nginx/conf.d/default.conf

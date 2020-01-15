@@ -17,4 +17,7 @@ async function makeBundle() {
   shell.cp('art/*', 'dist/');
 }
 
+shell.rm('-rf', 'dist/');
+shell.mkdir('-p', 'dist/');
+shell.cp('./default.conf', 'dist/default.conf');
 makeBundle();
