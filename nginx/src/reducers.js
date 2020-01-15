@@ -5,6 +5,12 @@ import { reducer as formReducer } from 'redux-form/immutable';
 import * as actions from './actions';
 
 function globalReducer(state, action) {
+  if (!state) {
+    state = fromJS({
+      jwt: null,
+      my: null,
+    });
+  }
   switch (action.type) {
     case actions.LOGIN:
       return state.set('my', fromJS(action.info));

@@ -63,7 +63,6 @@ function retryWithRefresh({ descriptor }) {
 
 export default class GoogleCalendar {
   constructor() {
-    this.makeApi();
   }
 
   makeApi() {

@@ -85,9 +85,9 @@ export function* syncDeleteToBackend({ event }) {
 }
 
 export default function* () {
-  yield fork(watchUpdateViewReq);
-  yield takeEvery('UPDATE_VIEW', listEventsFromBackend);
-  yield takeEvery('CREATE_EVENT', syncCreateToBackend);
-  yield takeEvery('MODIFY_EVENT', syncModifyToBackend);
-  yield takeEvery('DELETE_EVENT', syncDeleteToBackend);
+  // yield fork(watchUpdateViewReq);
+  // yield takeEvery('UPDATE_VIEW', listEventsFromBackend);
+  // yield takeEvery('CREATE_EVENT', syncCreateToBackend);
+  // yield takeEvery('MODIFY_EVENT', syncModifyToBackend);
+  // yield takeEvery('DELETE_EVENT', syncDeleteToBackend);
 }
