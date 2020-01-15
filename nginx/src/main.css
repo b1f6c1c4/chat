@@ -1,0 +1,210 @@
+html, body, #app, .app {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  position: fixed;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid black;
+}
+
+.grid {
+  flex-grow: 1;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
+}
+
+.head {
+  width: 100px;
+  flex-shrink: 0;
+  border-right: 1px solid black;
+  text-align: center;
+}
+
+.grid .head, .grid .days, .grid .day {
+  height: max-content;
+}
+
+@media only screen and (max-width: 800px) {
+  .head {
+    width: 75px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .head {
+    width: 50px;
+  }
+}
+
+.days {
+  width: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.grid-item {
+  height: 5vh;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  word-break: break-all;
+  overflow: auto;
+}
+
+.head .grid-item {
+  overflow: hidden;
+}
+
+.hour24 {
+  border-bottom: 2px solid lightgray;
+}
+
+.weekNumber {
+  font-size: 24px;
+  padding: 0 5px 0 5px;
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  overflow: visible;
+}
+
+.date {
+  font-size: 16px;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  overflow: hidden;
+}
+
+.dayInWeek {
+  font-size: 16px;
+  text-align: center;
+  border-right: 1px solid lightgray;
+  overflow: hidden;
+}
+
+.grid .grid-item {
+  border-right: 1px solid lightgray;
+}
+
+.slider {
+  height: 40px;
+  position: relative;
+  background: brown;
+  flex-shrink: 0;
+}
+
+.overlay {
+  top: 0;
+  position: absolute;
+  height: 100%;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  background-color: white;
+  opacity: 0.4;
+  z-index: 100;
+}
+
+.units {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.unit {
+  top: 0;
+  height: 100%;
+  position: absolute;
+  border-left: 1px solid pink;
+  border-right: 1px solid pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.day {
+  position: relative;
+}
+
+.event {
+  left: 0;
+  width: 100%;
+  position: absolute;
+  opacity: 0.8;
+  background-color: pink;
+  overflow: visible;
+}
+
+.draggables {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 255;
+  display: flex;
+  flex-direction: row;
+}
+
+.draggable {
+  background-color: transparent;
+  flex-grow: 1;
+}
+
+.event p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.summary {
+  font-weight: bold;
+}
+
+.description {
+  font-style: italic;
+}
+
+.fabs {
+  position: absolute;
+  right: 4vw;
+  bottom: calc(40px + 4vw);
+  display: flex;
+  flex-direction: column;
+  z-index: 512;
+}
+
+.fabs > button {
+  margin: 5px 0 5px 0;
+}
+
+.predrag-cont {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 40px;
+  display: flex;
+  flex-display: row;
+}

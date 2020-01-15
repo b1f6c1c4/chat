@@ -1,0 +1,13 @@
+# Artifact
+.cache
+dist
+functions-build
+node_modules
+
+# Cruft
+*~
+*.swp
+*.swo
+.DS_Store
+npm-debug.log
+yarn-error.log

@@ -1,0 +1,48 @@
+{
+  "name": "b1cal",
+  "version": "1.0.0",
+  "description": "Minimal web-based calendar.",
+  "repository": "https://github.com/b1f6c1c4/b1cal",
+  "author": "b1f6c1c4",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "parcel index.html app.html",
+    "build": "node build.js",
+    "lint": "eslint --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "components": "^0.1.0",
+    "date-fns": "^2.0.0-alpha.27",
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.2",
+    "redux": "^4.0.1",
+    "redux-immutable": "^4.0.0",
+    "redux-localstorage": "^0.4.1",
+    "redux-saga": "^1.0.2",
+    "simple-oauth2": "^2.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "babel-eslint": "^10.0.1",
+    "cssnano": "^4.1.10",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-redux-saga": "^1.0.0",
+    "netlify-lambda": "^1.4.5",
+    "parcel-bundler": "^1.12.3",
+    "pug": "^2.0.3",
+    "shelljs": "^0.8.3"
+  }
+}
