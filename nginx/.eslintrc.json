@@ -8,6 +8,7 @@
     "es6": true
   },
   "plugins": [
+    "import",
     "redux-saga",
     "react",
     "jsx-a11y"
@@ -117,10 +118,6 @@
     "require-yield": "warn"
   },
   "settings": {
-    "import/resolver": {
-      "node": {
-        "paths": ["app"]
-      }
-    }
+    "import/resolver": "parcel"
   }
 }

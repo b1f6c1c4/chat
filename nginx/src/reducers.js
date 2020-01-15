@@ -2,6 +2,7 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { connectRouter } from 'connected-react-router/immutable';
 import { reducer as formReducer } from 'redux-form/immutable';
+import loginReducer from '/src/containers/LoginContainer/reducer';
 import * as actions from './actions';
 
 function globalReducer(state, action) {
@@ -23,6 +24,7 @@ export default function createReducer(history) {
   const appReducer = combineReducers({
     router: connectRouter(history),
     global: globalReducer,
+    login: loginReducer,
     form: formReducer,
   });
 
