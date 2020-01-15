@@ -16,7 +16,7 @@ function retrieve(name) {
 let credential = retrieve('credential');
 
 if (!credential) {
-  window.location = '/';
+  // window.location = '/';
 } else {
   credential = JSON.parse(credential);
 }
