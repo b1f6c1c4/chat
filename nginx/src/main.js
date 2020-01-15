@@ -13,7 +13,6 @@ import { brown, teal } from '@material-ui/core/colors';
 import { Switch, Route } from 'react-router';
 import LoginContainer from './containers/LoginContainer';
 import createReducer from './reducers';
-import rootSaga from './sagas';
 import './main.css';
 
 
@@ -51,10 +50,10 @@ const ConnectedMuiThemeProvider = connect(createStructuredSelector({
 
 const history = createBrowserHistory();
 
-const saga = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [
-  saga,
+  sagaMiddleware,
   routerMiddleware(history),
 ];
 
@@ -95,7 +94,8 @@ const store = createStore(
   composeEnhancers(...enhancers),
 );
 
-saga.run(rootSaga);
+store.runSaga = sagaMiddleware.run;
+store.injectedSagas = {}; // Saga registry
 
 render((
   <Provider store={store}>

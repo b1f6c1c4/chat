@@ -6,20 +6,16 @@ html, body, #app, .app {
   overflow: hidden;
   position: fixed;
 }
-
 .password-field {
   font-family: sans-serif;
 }
-
 .result-wrapper {
   text-align: center;
 }
-
 .button-wrapper {
   margin: 5px;
   position: relative;
 }
-
 .button-progress {
   color: darkgreen;
   position: absolute;
@@ -28,7 +24,42 @@ html, body, #app, .app {
   margin-top: -12px;
   margin-left: -12px;
 }
-
 .right-icon {
   margin-left: 5px;
+}
+.header {
+  flex: 1;
+  cursor: pointer;
+}
+.menu-button {
+  margin-left: -12px;
+  margin-right: 20px;
+}
+.account-button {
+  text-transform: none;
+  padding-right: 10px;
+}
+.drawer: {
+  width: 300;
+}
+.nested: {
+  padding-left: 20px;
+}
+.item: {
+  padding-left: 0;
+}
+.root: {
+  width: '100%';
+}
+.wrapper: {
+  margin-top: 70;
+  margin-left: 'auto';
+  margin-right: 'auto';
+  max-width: 1024;
+}
+.loading-wrapper: {
+  text-align: 'center';
+}
+.progress: {
+  cursor: 'wait';
 }
