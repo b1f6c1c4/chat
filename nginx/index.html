@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta name="description" content="专业记账系统">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="专业记账系统">
+    <meta name="application-name" content="专业记账系统">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>专业记账系统</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <style>
+      body {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      #wrapper {
+        display: flex;
+        flex-direction: row;
+        border-bottom: gray 1.5px solid;
+      }
+      #user {
+        font-size: 11px;
+        line-height: 13px;
+        padding: 0 3px;
+        background-color: #ddd;
+        font-family: monospace;
+      }
+      #cmdLine {
+        flex-grow: 1;
+        font-size: 14px;
+        line-height: 16px;
+      }
+      #editor {
+        flex-grow: 1;
+        font-size: 14px;
+        line-height: 16px;
+      }
+      .ace_gutter-cell {
+        padding-left: 0;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div id="wrapper">
+      <div id="user"></div>
+      <script>
+        document.getElementById('user').innerText = window.localStorage.getItem('user') || 'anonymous';
+      </script>
+      <div id="cmdLine"></div>
+    </div>
+    <div id="editor"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js"></script>
+    <script src="backend.js"></script>
+    <script src="highlight.js"></script>
+    <script src="fold.js"></script>
+    <script src="mode.js"></script>
+    <script src="frontend.js"></script>
+
+  </body>
+</html>

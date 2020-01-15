@@ -1,14 +1,25 @@
 version: "2.4"
 services:
 
-  server:
+  nginx:
+    build: ./nginx
+    image: chat-frontend
+    restart: always
+    ports:
+      - 443:443
+    volumes:
+      - /data/chat/certs:/opt/certs
+    depends_on:
+      - tinode
+    networks:
+      - chat
+
+  tinode:
     build:
       context: ./bin
       dockerfile: ../Dockerfile
-    image: chat
+    image: chat-backend
     restart: always
-    ports:
-      - 6060:6060
     volumes:
       - /data/chat/config:/etc/chat
     depends_on:

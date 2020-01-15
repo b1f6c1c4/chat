@@ -1,11 +1,20 @@
 LDFLAGS=-s -w -X main.buildstamp=$$(cat VERSION)
 
-all: bin/keygen bin/server bin/tinode-db
+all: backend
 
-docker: all
+dc: dc-frontend dc-backend
+
+dc-frontend: frontend
+	docker-compose build nginx
+
+frontend: # TODO
+
+dc-backend: backend
 	rm -rf bin/entrypoint.sh bin/Makefile bin/VERSION bin/templ
 	cp -R entrypoint.sh Makefile VERSION src/server/templ bin/
-	docker-compose build server
+	docker-compose build tinode
+
+backend: bin/keygen bin/server bin/tinode-db
 
 bin/keygen: FORCE VERSION
 	go install -ldflags "$(LDFLAGS)" keygen
