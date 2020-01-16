@@ -1,5 +1,4 @@
-import { wait } from 'redux-saga';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import * as api from '/src/utils/api';
 import {
   change,
@@ -15,12 +14,9 @@ import * as actions from './actions';
 // Sagas
 export function* handleLoginRequest({ username, password }) {
   try {
-    const result = yield call(api.mutate, { username, password }); // FIXME
-    if (!result) {
-      throw new Error('Credential not accepted');
-    }
-    yield put(globalActions.login(result));
-    yield put(actions.loginSuccess(result));
+    yield call(api.login, username, password);
+    yield put(globalActions.login());
+    yield put(actions.loginSuccess());
     yield put(destroy('loginForm'));
     yield put(push('/chat'));
   } catch (err) {
@@ -31,10 +27,11 @@ export function* handleLoginRequest({ username, password }) {
 
 export function* handleRegisterRequest({ username, password }) {
   try {
-    const result = yield call(api.mutate, { username, password }); // FIXME
-    yield put(actions.registerSuccess(result));
+    yield call(api.register, username, password);
+    yield put(actions.registerSuccess());
+    yield delay(10000);
+    yield put(actions.registerDone());
     yield put(destroy('registerForm'));
-    yield wait(10);
     yield put(actions.changeActiveId(0));
     yield put(reset('loginForm'));
     yield put(change('loginForm', 'username', username));

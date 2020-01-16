@@ -8,7 +8,7 @@ import * as actions from './actions';
 function globalReducer(state, action) {
   if (!state) {
     state = fromJS({
-      jwt: null,
+      credential: null,
       my: null,
     });
   }

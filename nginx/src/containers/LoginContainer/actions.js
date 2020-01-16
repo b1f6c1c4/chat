@@ -18,10 +18,9 @@ export function loginRequest({ username, password }) {
 }
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export function loginSuccess(result) {
+export function loginSuccess() {
   return {
     type: LOGIN_SUCCESS,
-    result,
   };
 }
 
@@ -43,10 +42,9 @@ export function registerRequest({ username, password }) {
 }
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export function registerSuccess(result) {
+export function registerSuccess() {
   return {
     type: REGISTER_SUCCESS,
-    result,
   };
 }
 
@@ -55,5 +53,12 @@ export function registerFailure(error) {
   return {
     type: REGISTER_FAILURE,
     error,
+  };
+}
+
+export const REGISTER_DONE = 'REGISTER_DONE';
+export function registerDone() {
+  return {
+    type: REGISTER_DONE,
   };
 }

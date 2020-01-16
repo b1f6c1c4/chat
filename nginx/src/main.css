@@ -63,3 +63,6 @@ html, body, #app, .app {
 .progress: {
   cursor: 'wait';
 }
+.register-success {
+  color: forestgreen !important;
+}

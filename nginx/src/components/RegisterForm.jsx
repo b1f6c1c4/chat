@@ -28,6 +28,7 @@ class RegisterForm extends React.PureComponent {
       reset,
       handleSubmit,
       isLoading,
+      isRegistered,
     } = this.props;
 
     return (
@@ -47,6 +48,14 @@ class RegisterForm extends React.PureComponent {
             <PasswordField name="password" isNew fullWidth />
           </div>
           <ResultIndicator {...{ error }} />
+          {isRegistered && (
+            <DialogContentText className="register-success">
+              Your registration application has been received.
+              Please inform our administrator(s) of your
+              <strong> Username </strong>
+              to activate your account.
+            </DialogContentText>
+          )}
         </DialogContent>
         <DialogActions>
           <ClearButton {...{ reset, isLoading }} />
@@ -68,6 +77,9 @@ class RegisterForm extends React.PureComponent {
 
 RegisterForm.propTypes = {
   ...propTypes,
+  handleSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isRegistered: PropTypes.bool.isRequired,
   onRegister: PropTypes.func.isRequired,
 };
 

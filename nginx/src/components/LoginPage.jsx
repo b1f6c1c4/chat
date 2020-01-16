@@ -48,6 +48,7 @@ class LoginPage extends React.PureComponent {
 LoginPage.propTypes = {
   activeId: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isRegistered: PropTypes.bool.isRequired,
   onChangeActiveIdAction: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired,
   onRegister: PropTypes.func.isRequired,

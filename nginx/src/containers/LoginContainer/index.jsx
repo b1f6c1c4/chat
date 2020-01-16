@@ -4,24 +4,24 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { createStructuredSelector } from 'reselect';
-import injectSaga from '/src/utils/injectSaga';
+import { useInjectSaga } from '/src/utils/injectSaga';
 
 import LoginPage from '/src/components/LoginPage';
 
 import * as loginContainerActions from './actions';
-import sagas from './sagas';
+import saga from './sagas';
 
-export class LoginContainer extends React.PureComponent {
-  render() {
-    if (this.props.hasCredential) {
-      return (
-        <Redirect to="/app/" />
-      );
-    }
+export function LoginContainer(props) {
+  useInjectSaga({ key: '{{ camelCase name }}', saga });
+
+  if (props.hasCredential) {
     return (
-      <LoginPage {...this.props} />
+      <Redirect to="/login" />
     );
   }
+  return (
+    <LoginPage {...props} />
+  );
 }
 
 LoginContainer.propTypes = {
@@ -43,9 +43,9 @@ const mapStateToProps = createStructuredSelector({
   hasCredential: (state) => !!state.getIn(['global', 'credential']),
   activeId: (state) => state.getIn(['login', 'activeId']),
   isLoading: (state) => state.getIn(['login', 'isLoading']),
+  isRegistered: (state) => state.getIn(['login', 'isRegistered']),
 });
 
 export default compose(
-  // injectSaga({ key: 'login', saga: sagas }),
   connect(mapStateToProps, mapDispatchToProps),
 )(LoginContainer);
