@@ -56,7 +56,7 @@ class GlobalBar extends React.PureComponent {
 
     return (
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar className="global-bar">
           <IconButton
             className="menu-button"
             color="inherit"
@@ -67,8 +67,8 @@ class GlobalBar extends React.PureComponent {
           </IconButton>
           <Typography
             component="div"
-            onClick={this.handleProfile}
-            variant="headline"
+            onClick={this.handleChat}
+            variant="h4"
             color="inherit"
             className="header"
           >
@@ -82,6 +82,7 @@ class GlobalBar extends React.PureComponent {
                   ref={(obj) => { this.anchorEl = obj; }}
                   onClick={this.props.onOpenAccountAction}
                   color="inherit"
+                  variant="text"
                   endIcon={<AccountCircle />}
                 >
                   <span>{username}</span>
@@ -110,7 +111,7 @@ class GlobalBar extends React.PureComponent {
                 </Menu>
               </div>
             ) : (
-              <Button to="/login" color="inherit">
+              <Button to="/login" variant="outlined" color="secondary">
                 Login
               </Button>
             )

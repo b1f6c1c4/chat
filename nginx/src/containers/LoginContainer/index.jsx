@@ -8,11 +8,11 @@ import { useInjectSaga } from '/src/utils/injectSaga';
 
 import LoginPage from '/src/components/LoginPage';
 
-import * as loginContainerActions from './actions';
+import * as actions from './actions';
 import saga from './sagas';
 
 export function LoginContainer(props) {
-  useInjectSaga({ key: '{{ camelCase name }}', saga });
+  useInjectSaga({ key: 'login', saga });
 
   if (props.hasCredential) {
     return (
@@ -33,9 +33,9 @@ LoginContainer.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLogin: (param) => dispatch(loginContainerActions.loginRequest(param)),
-    onRegister: (param) => dispatch(loginContainerActions.registerRequest(param)),
-    onChangeActiveIdAction: (value) => dispatch(loginContainerActions.changeActiveId(value)),
+    onLogin: (param) => dispatch(actions.loginRequest(param)),
+    onRegister: (param) => dispatch(actions.registerRequest(param)),
+    onChangeActiveIdAction: (value) => dispatch(actions.changeActiveId(value)),
   };
 }
 

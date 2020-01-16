@@ -1,4 +1,4 @@
-html, body, #app, .app {
+html, body, #app, .root {
   width: 100%;
   height: 100%;
   padding: 0;
@@ -6,6 +6,24 @@ html, body, #app, .app {
   overflow: hidden;
   position: fixed;
 }
+
+.wrapper {
+  margin: 70px auto 0 auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.global-bar {
+  padding-left: 0.2rem !important;
+}
+
+.global-drawer {
+  min-width: calc(min(70vw, 250px));
+}
+
 .password-field {
   font-family: sans-serif;
 }
@@ -35,9 +53,6 @@ html, body, #app, .app {
 .account-button {
   text-transform: none;
   padding-right: 10px;
-}
-.drawer: {
-  width: 300;
 }
 .nested: {
   padding-left: 20px;
@@ -313,4 +328,8 @@ li.right:hover .menu-trigger {
   padding: 0px;
   color: inherit;
   background-color: inherit;
+}
+
+.err404 {
+  text-align: center;
 }

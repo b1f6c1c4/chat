@@ -5,13 +5,16 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, compose } from 'redux';
 import { ConnectedRouter, routerMiddleware } from 'connected-react-router/immutable';
 import createSagaMiddleware from 'redux-saga';
-import persistState from 'redux-localstorage';
+// import persistState from 'redux-localstorage';
 import { createBrowserHistory } from 'history';
 import { fromJS } from 'immutable';
 import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import { brown, teal } from '@material-ui/core/colors';
 import { Switch, Route } from 'react-router';
-import LoginContainer from './containers/LoginContainer';
+import GlobalContainer from '/src/containers/GlobalContainer';
+import LoginContainer from '/src/containers/LoginContainer';
+import ChatContainer from '/src/containers/ChatContainer';
+import NotFoundPage from '/src/components/NotFoundPage';
 import createReducer from './reducers';
 import './main.css';
 
@@ -46,7 +49,7 @@ const middlewares = [
 
 const enhancers = [
   applyMiddleware(...middlewares),
-  persistState(undefined, {
+  /* persistState(undefined, {
     key: 'chat',
     serialize: (state) => JSON.stringify({
       jwt: state.get(['global', 'jwt']),
@@ -62,7 +65,7 @@ const enhancers = [
       });
     },
     merge: (init, states) => init.mergeDeep(states),
-  }),
+  }), */
 ];
 
 /* eslint-disable no-underscore-dangle */
@@ -89,9 +92,13 @@ render((
     <CssBaseline />
     <MuiThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
-        <Switch>
-          <Route path="/login" component={LoginContainer} />
-        </Switch>
+        <GlobalContainer>
+          <Switch>
+            <Route path="/login" component={LoginContainer} />
+            <Route path="/chat" component={ChatContainer} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </GlobalContainer>
       </ConnectedRouter>
     </MuiThemeProvider>
   </Provider>

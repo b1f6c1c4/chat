@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -11,8 +10,9 @@ import {
   ListItemText,
 } from '@material-ui/core';
 import {
-  HelpOutline,
   Home,
+  Forum,
+  Favorite,
   Lock,
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
@@ -46,7 +46,7 @@ class GlobalDrawer extends React.PureComponent {
     let items;
     if (username) {
       items = [(
-        <ListItem button onClick={this.handleLogin}>
+        <ListItem key="login" button onClick={this.handleLogin}>
           <ListItemIcon>
             <Link to="/login">
               <Lock />
@@ -55,7 +55,7 @@ class GlobalDrawer extends React.PureComponent {
           <ListItemText
             className="item"
             primary={(
-              <Link to="/app/login">
+              <Link to="/login">
                 Login
               </Link>
             )}
@@ -64,7 +64,7 @@ class GlobalDrawer extends React.PureComponent {
       )];
     } else {
       items = [(
-        <ListItem button onClick={this.handleProfile}>
+        <ListItem key="profile" button onClick={this.handleProfile}>
           <ListItemIcon>
             <Link to="/profile">
               <Home />
@@ -80,35 +80,35 @@ class GlobalDrawer extends React.PureComponent {
           />
         </ListItem>
       ), (
-        <Divider />
+        <Divider key="div-profile-chat" />
       ), (
-        <ListItem button onClick={this.handleChat}>
+        <ListItem key="chat" button onClick={this.handleChat}>
           <ListItemIcon>
             <Link to="/chat">
-              <Home />
+              <Forum />
             </Link>
           </ListItemIcon>
           <ListItemText
             className="item"
             primary={(
               <Link to="/chat">
-                Profile
+                Chat
               </Link>
             )}
           />
         </ListItem>
       ), (
-        <ListItem button onClick={this.handlePropose}>
+        <ListItem key="propose" button onClick={this.handlePropose}>
           <ListItemIcon>
             <Link to="/prosose">
-              <Home />
+              <Favorite />
             </Link>
           </ListItemIcon>
           <ListItemText
             className="item"
             primary={(
               <Link to="/propose">
-                Profile
+                Propose
               </Link>
             )}
           />
@@ -122,10 +122,10 @@ class GlobalDrawer extends React.PureComponent {
         onClose={this.props.onCloseDrawerAction}
       >
         <List
+          className="global-drawer"
           component="nav"
-          className="drawer"
         >
-          {...items}
+          {items}
         </List>
       </Drawer>
     );

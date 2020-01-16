@@ -8,14 +8,14 @@ import {
 } from 'redux-form';
 import { push } from 'connected-react-router';
 
-import * as globalActions from '/src/actions';
+import * as globalActions from '/src/containers/GlobalContainer/actions';
 import * as actions from './actions';
 
 // Sagas
 export function* handleLoginRequest({ username, password }) {
   try {
     yield call(api.login, username, password);
-    yield put(globalActions.login());
+    yield put(globalActions.login({ username })); // TODO
     yield put(actions.loginSuccess());
     yield put(destroy('loginForm'));
     yield put(push('/chat'));
