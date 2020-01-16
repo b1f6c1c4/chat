@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Avatar from '/src/components/Avatar.jsx';
 
@@ -11,8 +12,8 @@ class ChatMessage extends React.PureComponent {
       content,
       timestamp,
     } = this.props;
-    const sideClass = sequence + ' ' + (response ? 'left' : 'right');
-    const bubbleClass = (sequence === 'single' || sequence === 'last') ?  'bubble tip' : 'bubble';
+    const sideClass = `${sequence} ${(response ? 'left' : 'right')}`;
+    const bubbleClass = (sequence === 'single' || sequence === 'last') ? 'bubble tip' : 'bubble';
     const showNickname = sequence === 'single' || sequence === 'first';
     const showAvatar = sequence === 'single' || sequence === 'last';
 
@@ -41,5 +42,13 @@ class ChatMessage extends React.PureComponent {
     );
   }
 }
+
+ChatMessage.propTypes = {
+  origin: PropTypes.object.isRequired,
+  sequence: PropTypes.string.isRequired,
+  response: PropTypes.bool,
+  content: PropTypes.string.isRequired,
+  timestamp: PropTypes.string.isRequired, // TODO: format here
+};
 
 export default ChatMessage;

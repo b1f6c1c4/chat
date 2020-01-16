@@ -82,9 +82,9 @@ class GlobalBar extends React.PureComponent {
                   ref={(obj) => { this.anchorEl = obj; }}
                   onClick={this.props.onOpenAccountAction}
                   color="inherit"
+                  endIcon={<AccountCircle />}
                 >
                   <span>{username}</span>
-                  <AccountCircle className="right-icon" />
                 </Button>
                 <Menu
                   id="menu-appbar"

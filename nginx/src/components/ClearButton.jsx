@@ -19,9 +19,9 @@ class ClearButton extends React.PureComponent {
         variant="outlined"
         disabled={isLoading}
         onClick={reset}
+        startIcon={<Delete />}
       >
         Clear
-        <Delete className="right-icon" />
       </Button>
     );
   }
