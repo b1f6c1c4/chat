@@ -16,10 +16,11 @@ class ClearButton extends React.PureComponent {
       <Button
         {...other}
         color="secondary"
+        variant="outlined"
         disabled={isLoading}
         onClick={reset}
       >
-        Loading
+        Clear
         <Delete className="right-icon" />
       </Button>
     );

@@ -23,7 +23,6 @@ class PasswordField extends React.PureComponent {
         }}
         type="password"
         label={this.props.label || 'Password'}
-        helperText="Password"
         validate={this.validate}
       />
     );

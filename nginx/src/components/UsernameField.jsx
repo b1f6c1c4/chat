@@ -18,7 +18,6 @@ class UsernameField extends React.PureComponent {
       <TextField
         {...other}
         label="Username"
-        helperText="Username"
         validate={this.validate}
       />
     );
