@@ -365,3 +365,10 @@ li.right:hover .menu-trigger {
   overflow-y: hidden;
   height: 100%;
 }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}

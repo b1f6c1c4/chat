@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 
 import {
-  Paper,
   Typography,
 } from '@material-ui/core';
 import { reduxForm, propTypes } from 'redux-form/immutable';
@@ -14,27 +13,6 @@ import LoadingButton from '/src/components/LoadingButton';
 import PasswordField from '/src/components/PasswordField';
 import ResultIndicator from '/src/components/ResultIndicator';
 
-
-// eslint-disable-next-line no-unused-vars
-const styles = (theme) => ({
-  container: {
-    width: '100%',
-    padding: theme.spacing.unit,
-  },
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    padding: theme.spacing.unit,
-    overflowX: 'auto',
-  },
-  actions: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-});
-
 class ChangePasswordPage extends React.PureComponent {
   handlePassword = (vals) => this.props.onPassword({
     oldPassword: vals.get('oldPassword'),
@@ -43,48 +21,45 @@ class ChangePasswordPage extends React.PureComponent {
 
   render() {
     const {
-      classes,
       reset,
       handleSubmit,
       isLoading,
     } = this.props;
 
     return (
-      <div className={classes.container}>
-        <DocumentTitle title={messages.header} />
-        <Typography variant="display2">
-          <FormattedMessage {...messages.header} />
+      <div className="wrapper">
+        <DocumentTitle title="Change password" />
+        <Typography variant="h2">
+          Change password
         </Typography>
-        <Paper className={classes.root}>
-          <form onSubmit={handleSubmit(this.handlePassword)}>
-            <div>
-              <PasswordField
-                label={messages.oldPassword}
-                name="oldPassword"
-                fullWidth
-              />
-              <PasswordField
-                label={messages.newPassword}
-                name="newPassword"
-                isNew
-                fullWidth
-              />
-              <ResultIndicator error={this.props.error} />
-            </div>
-            <div className={classes.actions}>
-              <ClearButton {...{ reset, isLoading }} />
-              <LoadingButton {...{ isLoading }}>
-                <Button
-                  type="submit"
-                  color="primary"
-                  disabled={isLoading}
-                >
-                  <FormattedMessage {...messages.change} />
-                </Button>
-              </LoadingButton>
-            </div>
-          </form>
-        </Paper>
+        <form onSubmit={handleSubmit(this.handlePassword)}>
+          <div>
+            <PasswordField
+              label="Old password"
+              name="oldPassword"
+              fullWidth
+            />
+            <PasswordField
+              label="New password"
+              name="newPassword"
+              isNew
+              fullWidth
+            />
+            <ResultIndicator error={this.props.error} />
+          </div>
+          <div className="actions">
+            <ClearButton {...{ reset, isLoading }} />
+            <LoadingButton {...{ isLoading }}>
+              <Button
+                type="submit"
+                color="primary"
+                disabled={isLoading}
+              >
+                Submit
+              </Button>
+            </LoadingButton>
+          </div>
+        </form>
       </div>
     );
   }

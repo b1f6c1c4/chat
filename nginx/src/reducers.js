@@ -5,6 +5,7 @@ import { reducer as formReducer } from 'redux-form/immutable';
 import globalReducer from '/src/containers/GlobalContainer/reducer';
 import loginReducer from '/src/containers/LoginContainer/reducer';
 import chatReducer from '/src/containers/ChatContainer/reducer';
+import changePasswordReducer from '/src/containers/ChangePasswordContainer/reducer';
 import * as actions from '/src/containers/GlobalContainer/actions';
 
 const initialState = fromJS({
@@ -29,6 +30,7 @@ export default function createReducer(history) {
     global: globalReducer,
     login: loginReducer,
     chat: chatReducer,
+    changePassword: changePasswordReducer,
     form: formReducer,
     persistent: persistentReducer,
   });

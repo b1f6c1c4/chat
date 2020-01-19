@@ -14,6 +14,7 @@ import { Switch, Route } from 'react-router';
 import GlobalContainer from '/src/containers/GlobalContainer';
 import LoginContainer from '/src/containers/LoginContainer';
 import ChatContainer from '/src/containers/ChatContainer';
+import ChangePasswordContainer from '/src/containers/ChangePasswordContainer';
 import NotFoundPage from '/src/components/NotFoundPage';
 import createReducer from './reducers';
 import './main.css';
@@ -86,6 +87,7 @@ render((
           <Switch>
             <Route path="/login" component={LoginContainer} />
             <Route path="/chat" component={ChatContainer} />
+            <Route path="/password" component={ChangePasswordContainer} />
             <Route component={NotFoundPage} />
           </Switch>
         </GlobalContainer>

@@ -74,3 +74,7 @@ export function publish(topic, data) {
 
   return tinode.publishMessage(pkt.pub);
 }
+
+export function changePassword(newPassword) {
+  return tinode.updateAccountBasic(undefined, undefined, newPassword);
+}

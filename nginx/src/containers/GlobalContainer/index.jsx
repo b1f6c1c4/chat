@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 import { createStructuredSelector } from 'reselect';
 import { useInjectSaga } from '/src/utils/injectSaga';
 

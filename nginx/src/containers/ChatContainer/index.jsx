@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { useInjectSaga } from '/src/utils/injectSaga';
 
+import AuthRequired from '/src/components/AuthRequired';
 import Loading from '/src/components/Loading';
 import ChatMessage from '/src/components/ChatMessage';
 import SendMessage from '/src/components/SendMessage';
@@ -116,26 +117,29 @@ export function ChatContainer(props) {
   }
 
   return (
-    <div className="topic-view">
-      {isLoading && (
-        <Loading />
-      )}
-      <div className="messages-container">
-        <div className="messages-panel" ref={handleScrollReference}>
-          <ul className="chat-box group">
-            {messageNodes}
-          </ul>
+    <AuthRequired hasCredential={props.hasCredential}>
+      <div className="topic-view">
+        {isLoading && (
+          <Loading />
+        )}
+        <div className="messages-container">
+          <div className="messages-panel" ref={handleScrollReference}>
+            <ul className="chat-box group">
+              {messageNodes}
+            </ul>
+          </div>
         </div>
+        <SendMessage
+          onSend={props.onSend}
+          onPress={() => {} /* TODO */}
+        />
       </div>
-      <SendMessage
-        onSend={props.onSend}
-        onPress={() => {} /* TODO */}
-      />
-    </div>
+    </AuthRequired>
   );
 }
 
 ChatContainer.propTypes = {
+  hasCredential: PropTypes.bool.isRequired,
   messages: PropTypes.array.isRequired,
   isLoading: PropTypes.bool, // TODO
   onSubscribe: PropTypes.func.isRequired,
@@ -152,6 +156,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
+  hasCredential: (state) => !!state.getIn(['global', 'my', 'id']),
   messages: (state) => state.getIn(['chat', 'messages']).toJS(),
   isLoading: (state) => state.getIn(['chat', 'isLoading']),
 });

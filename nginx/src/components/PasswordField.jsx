@@ -30,7 +30,7 @@ class PasswordField extends React.PureComponent {
 }
 
 PasswordField.propTypes = {
-  label: PropTypes.object,
+  label: PropTypes.string,
   isNew: PropTypes.bool,
 };
 
