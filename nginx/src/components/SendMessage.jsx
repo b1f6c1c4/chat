@@ -77,6 +77,7 @@ class SendMessage extends React.PureComponent {
           autoFocus
         />
         <IconButton
+          size="small"
           className="super-button"
           color="primary"
           aria-label="Send"
@@ -86,7 +87,7 @@ class SendMessage extends React.PureComponent {
           {this.props.disabled ? (
             <ArrowUpwardOutlined />
           ) : (
-            <ArrowUpward/>
+            <ArrowUpward />
           )}
         </IconButton>
       </div>

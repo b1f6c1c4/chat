@@ -3,7 +3,7 @@ import Tinode from 'tinode-sdk';
 
 let tinode;
 
-function connect() {
+async function connect() {
   let host = window.location.hostname;
   let secure = window.location.protocol === 'https:';
   if (process.env.TINODE_SERVER) {
@@ -19,15 +19,26 @@ function connect() {
     tinode.enableLogging(true);
   }
 
-  tinode.connect();
+  await tinode.connect();
 }
 
-connect();
+const connected = connect();
+
+const postLogin = () => ({
+  token: tinode.getAuthToken(),
+  id: tinode.getCurrentUserID(),
+});
+
+export async function relogin(token) {
+  await connected;
+  await tinode.loginToken(token);
+  return postLogin();
+}
 
 export async function login(un, pw) {
+  await connected;
   await tinode.loginBasic(un, pw);
-  const me = tinode.getMeTopic();
-  me.subscribe({ get: { desc: {}, sub: {} } });
+  return postLogin();
 }
 
 const b64EncodeUnicode = (str) => btoa(
@@ -38,6 +49,7 @@ const b64EncodeUnicode = (str) => btoa(
 );
 
 export async function register(un, pw) {
+  await connected;
   await tinode.createAccount(
     'basic',
     b64EncodeUnicode(`${un}:${pw}`),
@@ -50,5 +62,15 @@ export function getTopic(topic) {
 }
 
 export function publish(topic, data) {
-  return tinode.publish(topic, data);
+  if (typeof data !== 'string') {
+    // eslint-disable-next-line no-console
+    console.error(data);
+    return undefined;
+  }
+
+  const pkt = tinode.initPacket('pub', topic);
+  pkt.pub.noEcho = false;
+  pkt.pub.content = data;
+
+  return tinode.publishMessage(pkt.pub);
 }

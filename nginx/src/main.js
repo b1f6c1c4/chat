@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, compose } from 'redux';
 import { ConnectedRouter, routerMiddleware } from 'connected-react-router/immutable';
 import createSagaMiddleware from 'redux-saga';
-// import persistState from 'redux-localstorage';
+import persistState from 'redux-localstorage';
 import { createBrowserHistory } from 'history';
 import { fromJS } from 'immutable';
 import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
@@ -49,23 +49,13 @@ const middlewares = [
 
 const enhancers = [
   applyMiddleware(...middlewares),
-  /* persistState(undefined, {
+  persistState(undefined, {
     key: 'chat',
-    serialize: (state) => JSON.stringify({
-      jwt: state.get(['global', 'jwt']),
-    }),
-    deserialize: (raw) => {
-      const parsed = JSON.parse(raw);
-      if (!parsed) {
-        return undefined;
-      }
-      const { jwt } = parsed;
-      return fromJS({
-        global: { jwt },
-      });
-    },
+    slicer: () => (state) => state.filter((v, k) => k === 'persistent'),
+    serialize: (state) => JSON.stringify(state.toJS()),
+    deserialize: (raw) => fromJS(JSON.parse(raw)),
     merge: (init, states) => init.mergeDeep(states),
-  }), */
+  }),
 ];
 
 /* eslint-disable no-underscore-dangle */

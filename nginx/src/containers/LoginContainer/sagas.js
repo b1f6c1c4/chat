@@ -1,4 +1,9 @@
-import { call, delay, put, takeEvery } from 'redux-saga/effects';
+import {
+  call,
+  delay,
+  put,
+  takeEvery,
+} from 'redux-saga/effects';
 import * as api from '/src/utils/api';
 import {
   change,
@@ -14,8 +19,8 @@ import * as actions from './actions';
 // Sagas
 export function* handleLoginRequest({ username, password }) {
   try {
-    yield call(api.login, username, password);
-    yield put(globalActions.login({ username })); // TODO
+    const { token, id } = yield call(api.login, username, password);
+    yield put(globalActions.login({ token, id, username }));
     yield put(actions.loginSuccess());
     yield put(destroy('loginForm'));
     yield put(push('/chat'));

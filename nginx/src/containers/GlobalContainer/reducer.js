@@ -5,8 +5,9 @@ import * as actions from './actions';
 const initialState = fromJS({
   isDrawerOpen: false,
   isAccountOpen: false,
-  credential: null,
-  my: null,
+  my: {
+    id: null,
+  },
 });
 
 export default function (state = initialState, action) {
@@ -21,7 +22,7 @@ export default function (state = initialState, action) {
     case actions.CLOSE_ACCOUNT:
       return state.set('isAccountOpen', false);
     case actions.LOGIN:
-      return state.set('my', fromJS(action.info));
+      return state.setIn(['my', 'id'], fromJS(action.id));
     // Default
     default:
       return state;

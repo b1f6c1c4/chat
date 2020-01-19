@@ -31,7 +31,7 @@ export const LOGIN = 'LOGIN';
 export function login(info) {
   return {
     type: LOGIN,
-    info,
+    ...info,
   };
 }
 

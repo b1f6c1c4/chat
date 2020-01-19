@@ -109,7 +109,7 @@ export function ChatContainer(props) {
         origin={origin}
         sequence={sequence}
         response={isReply}
-        content={msg.content}
+        content={msg.content && msg.content.toString()}
         timestamp={msg.ts}
       />
     ));

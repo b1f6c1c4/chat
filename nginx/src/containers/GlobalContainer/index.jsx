@@ -46,7 +46,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  username: (state) => state.getIn(['global', 'my', 'username']),
+  username: (state) => state.getIn(['persistent', 'username']),
   isDrawerOpen: (state) => state.getIn(['global', 'isDrawerOpen']),
   isAccountOpen: (state) => state.getIn(['global', 'isAccountOpen']),
 });
