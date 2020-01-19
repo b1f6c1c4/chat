@@ -16,9 +16,10 @@ export function unsubscribe() {
 }
 
 export const SEND_REQUEST = 'SEND_REQUEST';
-export function send(data) {
+export function send(topic, data) {
   return {
     type: SEND_REQUEST,
+    topic,
     data,
   };
 }

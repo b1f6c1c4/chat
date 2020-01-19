@@ -12,10 +12,12 @@ import SendMessage from '/src/components/SendMessage';
 import * as actions from './actions';
 import saga from './sagas';
 
+const defaultTopic = 'grp1bHMuX6-R8k'; // FIXME
+
 export function ChatContainer(props) {
   useInjectSaga({ key: 'chat', saga });
   useEffect(() => {
-    props.onSubscribe('default');
+    props.onSubscribe(defaultTopic);
     return () => { props.onUnsubscribe('default'); };
   });
 
@@ -145,7 +147,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onSubscribe: (param) => dispatch(actions.subscribe(param)),
     onUnsubscribe: (param) => dispatch(actions.unsubscribe(param)),
-    onSend: (param) => dispatch(actions.send(param)),
+    onSend: (param) => dispatch(actions.send(defaultTopic, param)),
   };
 }
 

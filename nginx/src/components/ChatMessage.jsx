@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as datefns from 'date-fns';
 
 import Avatar from '/src/components/Avatar.jsx';
 
@@ -34,7 +35,7 @@ class ChatMessage extends React.PureComponent {
               {content}
             </span>
             <span className="timestamp">
-              {timestamp}
+              {datefns.format(timestamp, 'HH:mm')}
             </span>
           </div>
         </div>
@@ -48,7 +49,7 @@ ChatMessage.propTypes = {
   sequence: PropTypes.string.isRequired,
   response: PropTypes.bool,
   content: PropTypes.string.isRequired,
-  timestamp: PropTypes.string.isRequired, // TODO: format here
+  timestamp: PropTypes.object.isRequired,
 };
 
 export default ChatMessage;

@@ -1,14 +1,14 @@
 import _ from 'lodash';
+import { eventChannel } from 'redux-saga';
 import {
   call,
   cancel as rawCancel,
   delay,
-  eventChannel,
   fork,
   put,
   race,
-  select,
   take,
+  takeEvery,
 } from 'redux-saga/effects';
 import * as api from '/src/utils/api';
 
@@ -38,13 +38,14 @@ export const makeChan = (topic) => eventChannel((emit) => {
   };
 });
 
-export function* handleTopicRequestAction({ topic }) {
-  const t = api.getTopic(topic);
-  const query = t.startMetaQuery().withLaterData(50).build();
-  const ctrl = yield call([t, 'subscribe'], query);
-  console.log(ctrl);
-  const chan = yield call(makeChan, t);
+// Sagas
+export function* handleSubscribeRequest({ topic }) {
+  let chan;
   try {
+    const t = api.getTopic(topic);
+    const query = t.startMetaQuery().withLaterData(50).build();
+    yield call([t, 'subscribe'], query);
+    chan = yield call(makeChan, t);
     while (true) {
       const msg = yield take(chan);
       yield put(actions.received(msg));
@@ -52,11 +53,17 @@ export function* handleTopicRequestAction({ topic }) {
   } catch (err) {
     report(err);
   } finally {
-    close(chan);
+    if (chan) close(chan);
   }
 }
 
-// Sagas
+export function* handleSendRequest({ topic, data }) {
+  try {
+    yield call(api.publish, topic, data);
+  } catch (err) {
+    report(err);
+  }
+}
 
 // Watcher
 const Ob = {};
@@ -110,7 +117,7 @@ export function* watchTopic() {
     if (request) {
       if (!valid('topic')) {
         yield cancel('topic');
-        Ob.topic = yield fork(handleTopicRequestAction, request);
+        Ob.topic = yield fork(handleSubscribeRequest, request);
       }
       yield uncancel('topic');
       continue;
@@ -125,4 +132,5 @@ export function* watchTopic() {
 /* eslint-disable func-names */
 export default function* watcher() {
   yield fork(watchTopic);
+  yield takeEvery(actions.SEND_REQUEST, handleSendRequest);
 }
