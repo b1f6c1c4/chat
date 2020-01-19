@@ -45,6 +45,7 @@
       "error",
       "consistent"
     ],
+    "no-plusplus": "off",
     "no-param-reassign": "off",
     "no-restricted-syntax": "off",
     "import/extensions": "off",

@@ -9,6 +9,8 @@ html, body, #app, .root {
 
 .wrapper {
   margin: 70px auto 0 auto;
+  width: 100%;
+  height: calc(100vh - 70px);
 }
 
 a {
@@ -332,4 +334,39 @@ li.right:hover .menu-trigger {
 
 .err404 {
   text-align: center;
+}
+
+.topic-view {
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.caption-panel {
+  display: flex;
+  align-items: center;
+  flex: none;
+  padding: 0.5rem;
+  height: 4rem;
+  white-space: nowrap;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+.messages-panel {
+  position: relative;
+  padding: 0.75rem;
+  overflow-y: scroll;
+  background-color: #eceff1;
+  height: 100%;
+  /* TODO: background-image: url("../images/ignasi_pattern_s.png"); */
+}
+
+.messages-container {
+  position: relative;
+  overflow-y: hidden;
+  height: 100%;
 }

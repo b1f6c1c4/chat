@@ -3,6 +3,7 @@ import { connectRouter } from 'connected-react-router/immutable';
 import { reducer as formReducer } from 'redux-form/immutable';
 import globalReducer from '/src/containers/GlobalContainer/reducer';
 import loginReducer from '/src/containers/LoginContainer/reducer';
+import chatReducer from '/src/containers/ChatContainer/reducer';
 import * as actions from '/src/containers/GlobalContainer/actions';
 
 export default function createReducer(history) {
@@ -10,6 +11,7 @@ export default function createReducer(history) {
     router: connectRouter(history),
     global: globalReducer,
     login: loginReducer,
+    chat: chatReducer,
     form: formReducer,
   });
 

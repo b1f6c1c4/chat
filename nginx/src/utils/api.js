@@ -44,3 +44,7 @@ export async function register(un, pw) {
     false,
   );
 }
+
+export function getTopic(topic) {
+  return tinode.getTopic(topic);
+}

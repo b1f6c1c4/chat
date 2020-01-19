@@ -38,6 +38,10 @@ class GlobalBar extends React.PureComponent {
     this.props.onPush('/profile');
   };
 
+  handleChat = () => {
+    this.props.onPush('/chat');
+  };
+
   handlePassword = () => {
     this.props.onCloseAccountAction();
     this.props.onPush('/password');

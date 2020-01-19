@@ -44,7 +44,7 @@ class GlobalDrawer extends React.PureComponent {
     } = this.props;
 
     let items;
-    if (username) {
+    if (!username) {
       items = [(
         <ListItem key="login" button onClick={this.handleLogin}>
           <ListItemIcon>
